@@ -34,15 +34,21 @@ int main(){
   stringstream ss;
 
   string s;
+  while (true){
   getline(file, s); // file >> filename; // ss;
   cout << s.c_str() << endl; // ss.str();
 
+  int i = 0;
   char ch;
   do{
     ch = getch();
-    cout << ch ;//  << '\n'; // cout waits for a newline char before printing :(
-    cout.flush();
+    if (ch == s[i]){
+      cout << ch ;//  << '\n'; // cout waits for a newline char before printing :(
+      cout.flush();
+      i++;
+    }
     // cout << ss.str();
-  } while (ch != '.');
+  } while (i < s.size());
   cout << endl;
+  }
 }
