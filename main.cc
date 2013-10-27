@@ -39,7 +39,8 @@ int main(){
   vector<string> sentences;
 
   // string sentences[] = new string[4]; // NUMLINES // USE VECTORS
-  string filename = "input.txt";
+  string filename; // = "input.txt";
+  cin >> filename;
   ifstream file;
   file.open(filename.c_str()); // .c_str());
 
@@ -73,7 +74,6 @@ int main(){
     double dt = difftime(t2, t1);
     double wpm = calc_wpm(dt, sentences[line]);
     cout << "Your wpm was: " << wpm << endl;
-    cout << "You took " << dt;
-    cout << " seconds to complete this line." << endl;
+    cout << "You took " << dt << " seconds to complete this line." << endl;
   }
 }
