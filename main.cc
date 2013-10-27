@@ -27,28 +27,31 @@ char getch() {
 }
 
 int main(){
+  int NUMLINES = 4;
+  string sentences[] = new string[4]; // NUMLINES // USE VECTORS
   string filename = "input.txt";
   ifstream file;
   file.open(filename.c_str()); // .c_str());
 
   stringstream ss;
 
-  string s;
-  while (true){
-  getline(file, s); // file >> filename; // ss;
-  cout << s.c_str() << endl; // ss.str();
+  for (int line = 0; line < NUMLINES; line++){
+    getline(file, sentences[line]); // file >> filename; // ss;
+  }
 
-  int i = 0;
-  char ch;
-  do{
-    ch = getch();
-    if (ch == s[i]){
-      cout << ch ;//  << '\n'; // cout waits for a newline char before printing :(
-      cout.flush();
-      i++;
-    }
-    // cout << ss.str();
-  } while (i < s.size());
-  cout << endl;
+  for (int line = 0; line < NUMLINES; line++){
+    cout << s.c_str() << endl; // ss.str(); 
+    int i = 0;
+    char ch;
+    do{
+      ch = getch();
+      if (ch == sentences[line][i]){
+        cout << ch ;//  << '\n'; // cout waits for a newline char before printing :(
+        cout.flush();
+        i++;
+      }
+      // cout << ss.str();
+    } while (i < s.size());
+    cout << endl;
   }
 }
