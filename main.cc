@@ -28,6 +28,12 @@ char getch() {
         return (buf);
 }
 
+double calc_wpm(double t, string in_s){
+  double wpm = (in_s.size() * 60) / (5 * t); // order of operations changed to preserve accuracy
+  // double wpm = (in_s.size() / 5) / (t / 60);
+  return wpm;
+}
+
 int main(){
   int NUMLINES = 4;
   vector<string> sentences;
@@ -49,7 +55,7 @@ int main(){
   // actual meat
   time_t t1, t2;
   for (int line = 0; line < NUMLINES; line++){
-    cout << sentences[line].c_str() << endl; // ss.str(); 
+    cout << sentences[line].c_str() << endl; // ss.str(); // i think c_str() is optional
     int i = 0;
     char ch;
     time(&t1); // alt: t1 = time(NULL);
@@ -65,6 +71,9 @@ int main(){
     time(&t2);
     cout << endl;
     double dt = difftime(t2, t1);
-    cout << "You took " << dt << " seconds to complete this line." << endl;
+    double wpm = calc_wpm(dt, sentences[line]);
+    cout << "Your wpm was: " << wpm << endl;
+    cout << "You took " << dt;
+    cout << " seconds to complete this line." << endl;
   }
 }
