@@ -35,11 +35,11 @@ double calc_wpm(double t, string in_s){
 }
 
 int main(){
-  int NUMLINES = 4;
   vector<string> sentences;
 
   // string sentences[] = new string[4]; // NUMLINES // USE VECTORS
   string filename; // = "input.txt";
+  cout << "Specify an input file: ";
   cin >> filename;
   ifstream file;
   file.open(filename.c_str()); // .c_str());
@@ -47,11 +47,24 @@ int main(){
   stringstream ss;
 
   // building the sentences vector
-  for (int line = 0; line < NUMLINES; line++){
+  cout << "Loading file... ";
+  for(int line = 0; true; line++){
     string s;
     getline(file, s); // file >> filename; // ss;
+    if (file.eof()){ break;}
+    /*
+    try{
+      getline(file, s);
+    } catch (ios_base::failure e) {
+      cout << "fail" << endl;
+      break;
+    }
+    */
     sentences.push_back(s);
   }
+  cout << "File successfully loaded." << endl;
+
+  int NUMLINES = sentences.size();
 
   // actual meat
   time_t t1, t2;
