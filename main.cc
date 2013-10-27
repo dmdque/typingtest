@@ -55,14 +55,14 @@ int main(){
   // actual meat
   time_t t1, t2;
   for (int line = 0; line < NUMLINES; line++){
-    cout << sentences[line].c_str() << endl; // ss.str(); // i think c_str() is optional
+    cout << "\x1b[0;32m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
     int i = 0;
     char ch;
     time(&t1); // alt: t1 = time(NULL);
     do{
       ch = getch();
       if (ch == sentences[line][i]){
-        cout << ch ;//  << '\n'; // cout waits for a newline char before printing :(
+        cout << "\x1b[0;33m" << ch << "\x1b[0m";//  << '\n'; // cout waits for a newline char before printing :(
         cout.flush();
         i++;
       }
