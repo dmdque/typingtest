@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
@@ -38,16 +39,20 @@ int main(){
 
   stringstream ss;
 
+  // building the sentences vector
   for (int line = 0; line < NUMLINES; line++){
     string s;
     getline(file, s); // file >> filename; // ss;
     sentences.push_back(s);
   }
 
+  // actual meat
+  time_t t1, t2;
   for (int line = 0; line < NUMLINES; line++){
     cout << sentences[line].c_str() << endl; // ss.str(); 
     int i = 0;
     char ch;
+    time(&t1); // alt: t1 = time(NULL);
     do{
       ch = getch();
       if (ch == sentences[line][i]){
@@ -57,6 +62,9 @@ int main(){
       }
       // cout << ss.str();
     } while (i < sentences[line].size());
+    time(&t2);
     cout << endl;
+    double dt = difftime(t2, t1);
+    cout << "You took " << dt << " seconds to complete this line." << endl;
   }
 }
