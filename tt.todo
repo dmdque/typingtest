@@ -1,0 +1,9 @@
+x add timer
+x add wpm calculator
+x add colour to text
+add 'skip' shortcut
+for coding text:
+  allow tabs to insert 2 spaces
+
+make time more precise
+add flags to choose which input file to use (getopt)
