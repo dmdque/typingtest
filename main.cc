@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
@@ -28,7 +29,9 @@ char getch() {
 
 int main(){
   int NUMLINES = 4;
-  string sentences[] = new string[4]; // NUMLINES // USE VECTORS
+  vector<string> sentences;
+
+  // string sentences[] = new string[4]; // NUMLINES // USE VECTORS
   string filename = "input.txt";
   ifstream file;
   file.open(filename.c_str()); // .c_str());
@@ -36,11 +39,13 @@ int main(){
   stringstream ss;
 
   for (int line = 0; line < NUMLINES; line++){
-    getline(file, sentences[line]); // file >> filename; // ss;
+    string s;
+    getline(file, s); // file >> filename; // ss;
+    sentences.push_back(s);
   }
 
   for (int line = 0; line < NUMLINES; line++){
-    cout << s.c_str() << endl; // ss.str(); 
+    cout << sentences[line].c_str() << endl; // ss.str(); 
     int i = 0;
     char ch;
     do{
@@ -51,7 +56,7 @@ int main(){
         i++;
       }
       // cout << ss.str();
-    } while (i < s.size());
+    } while (i < sentences[line].size());
     cout << endl;
   }
 }
