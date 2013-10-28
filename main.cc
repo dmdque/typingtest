@@ -80,16 +80,16 @@ int main(){
         cout << "\x1b[0;33m" << ch << "\x1b[0m";
         cout.flush();
         i++;
-      } else if (ch == 127){
-        cout << "\x1b[0;33m" << "*" << "\x1b[0m";
+      } else if (ch == 127){ // BACKSPACE/DEL
+        cout << "\x1b[0;36m" << sentences[line][i] << "\x1b[0m";
         cout.flush();
         i++;
-      } else if (ch == 27){
-      // (ch == 9 || ch == 11 || ch == '\t' || ch == '\v' || ch == '\n' || ch == 92 || ch == '\\' || ch == 27){
+      } else if (ch == 27){ // ESC/DEL
+      // (ch == 9 || ch == 11 || ch == '\t' || ch == '\v' || ch == '\n' || ch == 92 || ch == '\\' || ch == 27)
           // line++;
           // goto end_loop;
           break;
-      } else if (ch == 9){
+      } else if (ch == 9){ // horizontal TAB
         if (' ' == sentences[line][i]){
           if (' ' == sentences[line][i+1]){ // **error check this for EOF
             cout << " ";
@@ -99,7 +99,7 @@ int main(){
           cout << " ";
           cout.flush();
           i++;
-          continue;
+          // continue;
         }
       }
       // cout << ss.str();
