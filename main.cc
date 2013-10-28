@@ -69,6 +69,7 @@ int main(){
   // actual meat
   time_t t1, t2;
   for (int line = 0; line < NUMLINES; line++){
+    // begin_loop:
     cout << "\x1b[0;32m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
     int i = 0;
     char ch;
@@ -76,9 +77,25 @@ int main(){
     do{
       ch = getch();
       if (ch == sentences[line][i]){
-        cout << "\x1b[0;33m" << ch << "\x1b[0m";//  << '\n'; // cout waits for a newline char before printing :(
+        cout << "\x1b[0;33m" << ch << "\x1b[0m";
         cout.flush();
         i++;
+      } else if (ch == 127){
+        cout << "\x1b[0;33m" << "*" << "\x1b[0m";
+        cout.flush();
+        i++;
+      } else if (ch == 27){
+      // (ch == 9 || ch == 11 || ch == '\t' || ch == '\v' || ch == '\n' || ch == 92 || ch == '\\' || ch == 27){
+          // line++;
+          // goto end_loop;
+          break;
+      } else if (ch == 9){
+        if (' ' == sentences[line][i] && ' ' == sentences[line][i+1]){
+          cout << "  ";
+          cout.flush();
+          i += 2;
+          continue;
+        }
       }
       // cout << ss.str();
     } while (i < sentences[line].size());
@@ -88,5 +105,7 @@ int main(){
     double wpm = calc_wpm(dt, sentences[line]);
     cout << "Your wpm was: " << wpm << endl;
     cout << "You took " << dt << " seconds to complete this line." << endl;
+    // end_loop:
+    // cout << "\x1b[0m" << endl;
   }
 }

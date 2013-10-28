@@ -8,5 +8,6 @@ for coding text:
 
 make time more precise
 add flags to choose which input file to use (getopt)
+  add option to randomize sentences
 add highscore system
 perhaps change line delimiter from "\n" to "\\" or something
