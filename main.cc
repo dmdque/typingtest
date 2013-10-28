@@ -90,10 +90,15 @@ int main(){
           // goto end_loop;
           break;
       } else if (ch == 9){
-        if (' ' == sentences[line][i] && ' ' == sentences[line][i+1]){
-          cout << "  ";
+        if (' ' == sentences[line][i]){
+          if (' ' == sentences[line][i+1]){ // **error check this for EOF
+            cout << " ";
+            cout.flush();
+            i++;
+          }
+          cout << " ";
           cout.flush();
-          i += 2;
+          i++;
           continue;
         }
       }
