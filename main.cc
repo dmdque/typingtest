@@ -70,6 +70,10 @@ int main(){
   time_t t1, t2;
   for (int line = 0; line < NUMLINES; line++){
     // begin_loop:
+    if (sentences[line].size() == 0){ // empty line!
+      // cout << "surpressed an empty line" << endl;
+      continue;
+    }
     cout << "\x1b[0;32m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
     int i = 0;
     char ch;
