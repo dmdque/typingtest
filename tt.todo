@@ -12,7 +12,7 @@ add flags to choose which input file to use (getopt)
 add highscore system
 perhaps change line delimiter from "\n" to "\\" or something
 it seems that DEL and ESC have the same ascii values...?
-skip blank lines
+x skip blank lines
 change escape characters to more-difficult-to-reach or key combinations
 display one LINE at a time instead of one "sentence"
 handle case where invalid filename is given

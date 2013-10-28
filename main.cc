@@ -77,9 +77,11 @@ int main(){
     cout << "\x1b[0;32m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
     int i = 0;
     char ch;
-    time(&t1); // alt: t1 = time(NULL);
-    do{
+    while (i < sentences[line].size()){
       ch = getch();
+      if (i == 0){
+        time(&t1); // first character // alt: t1 = time(NULL);
+      }
       if (ch == sentences[line][i]){
         cout << "\x1b[0;33m" << ch << "\x1b[0m";
         cout.flush();
@@ -107,7 +109,7 @@ int main(){
         }
       }
       // cout << ss.str();
-    } while (i < sentences[line].size());
+    }
     time(&t2);
     cout << endl;
     double dt = difftime(t2, t1);
