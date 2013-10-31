@@ -36,6 +36,7 @@ double calc_wpm(double t, string in_s){
 }
 
 int main(int argc, char **argv){
+  int DEBUG = 0;
   int RANDOMIZE = 0;
   // getopt stuff
   // opterr = 0;
@@ -79,26 +80,40 @@ int main(int argc, char **argv){
     sentences.push_back(s);
   }
   cout << "File successfully loaded." << endl;
-  if (RANDOMIZE){
-    cout << "RANDOMIZE!" << endl;
+
+  vector<int> sentence_order;
+  for (unsigned int i = 0; i < sentences.size(); i++){
+    sentence_order.push_back(i);
   }
-
-  int NUMLINES = sentences.size();
-
+  if (RANDOMIZE){
+    srand(time(NULL));
+    if (DEBUG){ cout << "RANDOMIZE!" << endl;}
+    for (unsigned int i = 0; i < sentences.size(); i++){
+      int r = rand() % sentences.size();
+      int temp = sentence_order[i];
+      sentence_order[i] = sentence_order[r];
+      sentence_order[r] = temp;
+    }
+  }
+  if (DEBUG){
+    for (unsigned int i = 0; i < sentences.size(); i++){
+      if (i != 0){
+        cout << ", ";
+      }
+      cout << sentence_order[i];
+    }
+  }
   // actual meat
   time_t t1, t2;
-  for (int vline = 0; vline < NUMLINES; vline++){
-  int line = vline;
-    if (RANDOMIZE){
-      line = rand() % sentences.size();
-    }
+  for (unsigned int i = 0; i < sentences.size(); i++){
+    int line = sentence_order[i]; // change inplementation so that lines never repeat (remove from vector as they are used)
     // begin_loop:
     if (sentences[line].size() == 0){ // empty line!
       // cout << "surpressed an empty line" << endl;
       continue;
     }
-    cout << "\x1b[0;32m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
-    int i = 0;
+    cout << "\x1b[0;33m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
+    unsigned int i = 0;
     char ch;
     while (i < sentences[line].size()){
       ch = getch();
@@ -106,7 +121,7 @@ int main(int argc, char **argv){
         time(&t1); // first character // alt: t1 = time(NULL);
       }
       if (ch == sentences[line][i]){
-        cout << "\x1b[0;33m" << ch << "\x1b[0m";
+        cout << "\x1b[0;32m" << ch << "\x1b[0m";
         cout.flush();
         i++;
       } else if (ch == 127){ // BACKSPACE/DEL
