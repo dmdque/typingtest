@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <ctime>
@@ -34,20 +35,35 @@ double calc_wpm(double t, string in_s){
   return wpm;
 }
 
-int main(){
+int main(int argc, char **argv){
+  int RANDOMIZE = 0;
+  // getopt stuff
+  // opterr = 0;
+  int c;
+  string filename; // = "input.txt";
+  while ((c = getopt(argc, argv, "rf:")) != -1){
+    if (c == 'r'){
+       RANDOMIZE = 1;
+    }
+    else if (c == 'f'){
+      filename = optarg;
+    }
+  }
+
   vector<string> sentences;
 
   // string sentences[] = new string[4]; // NUMLINES // USE VECTORS
-  string filename; // = "input.txt";
-  cout << "Specify an input file: ";
-  cin >> filename;
+  if (filename == ""){
+    cout << "Specify an input file: ";
+    cin >> filename;
+  }
   ifstream file;
   file.open(filename.c_str()); // .c_str());
 
   stringstream ss;
 
   // building the sentences vector
-  cout << "Loading file... ";
+  cout << "Loading file " << filename << "... ";
   for(int line = 0; true; line++){
     string s;
     getline(file, s); // file >> filename; // ss;
@@ -63,12 +79,19 @@ int main(){
     sentences.push_back(s);
   }
   cout << "File successfully loaded." << endl;
+  if (RANDOMIZE){
+    cout << "RANDOMIZE!" << endl;
+  }
 
   int NUMLINES = sentences.size();
 
   // actual meat
   time_t t1, t2;
-  for (int line = 0; line < NUMLINES; line++){
+  for (int vline = 0; vline < NUMLINES; vline++){
+  int line = vline;
+    if (RANDOMIZE){
+      line = rand() % sentences.size();
+    }
     // begin_loop:
     if (sentences[line].size() == 0){ // empty line!
       // cout << "surpressed an empty line" << endl;
