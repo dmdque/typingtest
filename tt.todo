@@ -7,8 +7,8 @@ x for coding text:
 x   allow tabs to insert 2 spaces
 
 make time more precise
-add flags to choose which input file to use (getopt)
-  add option to randomize sentences
+x add flags to choose which input file to use (getopt)
+x   add option to randomize sentences
 add highscore system
 perhaps change line delimiter from "\n" to "\\" or something
 it seems that DEL and ESC have the same ascii values...?
@@ -16,3 +16,4 @@ x skip blank lines
 change escape characters to more-difficult-to-reach or key combinations
 display one LINE at a time instead of one "sentence"
 handle case where invalid filename is given
+graphics
