@@ -31,7 +31,6 @@ char getch() {
 
 double calc_wpm(double t, string in_s){
   double wpm = (in_s.size() * 60) / (5 * t); // order of operations changed to preserve accuracy
-  // double wpm = (in_s.size() / 5) / (t / 60);
   return wpm;
 }
 
@@ -53,14 +52,13 @@ int main(int argc, char **argv){
 
   vector<string> sentences;
 
-  // string sentences[] = new string[4]; // NUMLINES // USE VECTORS
   if (filename == ""){
     cout << "Specify an input file: ";
     cin >> filename;
   }
+
   ifstream file;
   file.open(filename.c_str()); // .c_str());
-
   stringstream ss;
 
   // building the sentences vector
@@ -105,22 +103,21 @@ int main(int argc, char **argv){
   }
   // actual meat
   time_t t1, t2;
-  for (unsigned int i = 0; i < sentences.size(); i++){
-    int line = sentence_order[i]; // change inplementation so that lines never repeat (remove from vector as they are used)
-    // begin_loop:
+  for (unsigned int si = 0; si < sentences.size(); si++){ // si = sentence iterator
+    int line = sentence_order[si];
     if (sentences[line].size() == 0){ // empty line!
       // cout << "surpressed an empty line" << endl;
       continue;
     }
     cout << "\x1b[0;33m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
-    unsigned int i = 0;
+    unsigned int i = 0; // character iterator
     char ch;
     while (i < sentences[line].size()){
       ch = getch();
       if (i == 0){
         time(&t1); // first character // alt: t1 = time(NULL);
       }
-      if (ch == sentences[line][i]){
+      if (ch == sentences[line][i]){ // correct character has been typed
         cout << "\x1b[0;32m" << ch << "\x1b[0m";
         cout.flush();
         i++;
