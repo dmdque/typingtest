@@ -10,6 +10,7 @@ make time more precise
 x add flags to choose which input file to use (getopt)
 x   add option to randomize sentences
 add highscore system
+  track scores over time (for each sentence? hmm nah) and make a graph
 perhaps change line delimiter from "\n" to "\\" or something
 it seems that DEL and ESC have the same ascii values...?
 x skip blank lines
