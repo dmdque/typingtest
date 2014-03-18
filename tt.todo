@@ -18,3 +18,4 @@ change escape characters to more-difficult-to-reach or key combinations
 display one LINE at a time instead of one "sentence"
 handle case where invalid filename is given
 graphics
+add comments (#)

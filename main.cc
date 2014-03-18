@@ -41,9 +41,12 @@ int main(int argc, char **argv){
   // opterr = 0;
   int c;
   string filename; // = "input.txt";
-  while ((c = getopt(argc, argv, "rf:")) != -1){
-    if (c == 'r'){
-       RANDOMIZE = 1;
+  while ((c = getopt(argc, argv, "drf:")) != -1){
+    if (c == 'd'){
+      DEBUG = 1;
+    }
+    else if (c == 'r'){
+      RANDOMIZE = 1;
     }
     else if (c == 'f'){
       filename = optarg;
@@ -100,6 +103,7 @@ int main(int argc, char **argv){
       }
       cout << sentence_order[i];
     }
+    cout << "\n";
   }
   // actual meat
   time_t t1, t2;
