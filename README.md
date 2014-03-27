@@ -10,7 +10,7 @@ You will then be prompted for an input file. Enter a text file (eg. `input.txt`)
 
 ### Options
 -f \<file\>  
-   use the given \<file\> as the input file.
+&nbsp; &nbsp; &nbsp; use the given \<file\> as the input file.
 
 -r  
    randomize the order of the lines in the input file.
