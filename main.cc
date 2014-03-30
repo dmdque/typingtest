@@ -113,7 +113,9 @@ int main(int argc, char **argv){
       // cout << "surpressed an empty line" << endl;
       continue;
     }
-    cout << "Line #" << (si + 1) << " (#" << (line + 1) << " in input file)" << ": " << endl;
+    if (DEBUG){
+      cout << "Line #" << (si + 1) << " (#" << (line + 1) << " in input file)" << ": " << endl;
+    }
     cout << "\x1b[0;33m" << sentences[line].c_str() << "\x1b[0m" << endl; // ss.str(); // i think c_str() is optional
     unsigned int i = 0; // character iterator
     char ch;
