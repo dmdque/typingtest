@@ -37,6 +37,7 @@ double calc_wpm(double t, string in_s){
 int main(int argc, char **argv){
   int DEBUG = 0;
   int RANDOMIZE = 0;
+  double totalwpm = 0;
   // getopt stuff
   // opterr = 0;
   int c;
@@ -156,8 +157,13 @@ int main(int argc, char **argv){
     cout << endl;
     double dt = difftime(t2, t1);
     double wpm = calc_wpm(dt, sentences[line]);
+    if (wpm < 250){ // reasonable wpm // TODO: change this to only happen if sentence completed successfully. (not pressing esc)
+      totalwpm += wpm;
+    }
     cout << "Your wpm was: " << wpm << endl;
     cout << "You took " << dt << " seconds to complete this line." << endl;
+    // si increments even if <esc> is pressed. So you are penalized for skipping a line
+    cout << "Your average wpm is: " << (totalwpm / (si + 1)) << endl;
     // end_loop:
     // cout << "\x1b[0m" << endl;
   }
