@@ -9,7 +9,6 @@ To Do
 * option to choose number of lines to be tested on
   * (so it's not 60+ every time)
 * handle case where invalid filename is given
-* 
 ## Maybe Do
 * graphics
 * perhaps change line delimiter from "\n" to "\\" or something
@@ -18,7 +17,6 @@ To Do
 * display one LINE at a time instead of one "sentence"
 * 
 * add comments (#)
-* 
 ## Did 
 * ~~for coding text:~~
   * ~~allow tabs to insert 2 spaces~~
