@@ -29,15 +29,16 @@ char getch() {
   return (buf);
 }
 
-double calc_wpm(double t, string in_s){
-  double wpm = (in_s.size() * 60) / (5 * t); // order of operations changed to preserve accuracy
+double calc_wpm(double t, int numchars){
+  double wpm = (numchars * 60) / (5 * t); // order of operations changed to preserve accuracy
   return wpm;
 }
 
 int main(int argc, char **argv){
   int DEBUG = 0;
   int RANDOMIZE = 0;
-  double totalwpm = 0;
+  int totalwords = 0;
+  double totaltime = 0;
   // getopt stuff
   // opterr = 0;
   int c;
@@ -156,14 +157,15 @@ int main(int argc, char **argv){
     time(&t2);
     cout << endl;
     double dt = difftime(t2, t1);
-    double wpm = calc_wpm(dt, sentences[line]);
+    double wpm = calc_wpm(dt, sentences[line].size());
     if (wpm < 250){ // reasonable wpm // TODO: change this to only happen if sentence completed successfully. (not pressing esc)
-      totalwpm += wpm;
+      totalwords += sentences[line].size();
+      totaltime += dt;
     }
     cout << "Your wpm was: " << wpm << endl;
     cout << "You took " << dt << " seconds to complete this line." << endl;
     // si increments even if <esc> is pressed. So you are penalized for skipping a line
-    cout << "Your average wpm is: " << (totalwpm / (si + 1)) << endl;
+    cout << "Your average wpm is: " << (calc_wpm(totaltime, totalwords)) << endl;
     // end_loop:
     // cout << "\x1b[0m" << endl;
   }
