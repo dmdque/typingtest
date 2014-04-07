@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
 #include <string>
 #include <vector>
@@ -37,21 +38,23 @@ double calc_wpm(double t, int numchars){
 int main(int argc, char **argv){
   int DEBUG = 0;
   int RANDOMIZE = 0;
+  int maxlines = 200; // arbitrarily large value
   int totalwords = 0;
   double totaltime = 0;
   // getopt stuff
   // opterr = 0;
   int c;
   string filename; // = "input.txt";
-  while ((c = getopt(argc, argv, "drf:")) != -1){
+  while ((c = getopt(argc, argv, "drf:l:")) != -1){
     if (c == 'd'){
       DEBUG = 1;
-    }
-    else if (c == 'r'){
+    } else if (c == 'r'){
       RANDOMIZE = 1;
-    }
-    else if (c == 'f'){
+    } else if (c == 'f'){
       filename = optarg;
+    } else if (c == 'l'){
+      maxlines = atoi(optarg);
+      cout << "maxlines: " << maxlines << endl;
     }
   }
 
@@ -68,7 +71,7 @@ int main(int argc, char **argv){
 
   // building the sentences vector
   cout << "Loading file " << filename << "... ";
-  for(int line = 0; true; line++){
+  for(int line = 0; true && line < maxlines; line++){
     string s;
     getline(file, s); // file >> filename; // ss;
     if (file.eof()){ break;}
@@ -83,6 +86,18 @@ int main(int argc, char **argv){
     sentences.push_back(s);
   }
   cout << "File successfully loaded." << endl;
+/*
+  // TODO
+  // READ HIGHSCORE FROM <filename.hs>
+  fstream hs_file;
+  hs_file.open("input.hs");
+  string highscore;
+
+  // (at end) write highscore to <filename.hs>
+
+  hs_file >> highscore;
+  cout << highscore;
+*/
 
   vector<int> sentence_order;
   for (unsigned int i = 0; i < sentences.size(); i++){

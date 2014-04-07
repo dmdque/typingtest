@@ -17,6 +17,7 @@ To Do
 * it seems that DEL and ESC have the same ascii values...?
 * display one LINE at a time instead of one "sentence"
 * add comments (#)
+* make -r and -l work together so that the limited lines are not always the first \<limit\>
 
 ## Did 
 * ~~for coding text:~~
