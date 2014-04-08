@@ -41,6 +41,8 @@ int main(int argc, char **argv){
   int maxlines = 200; // arbitrarily large value
   int totalwords = 0;
   double totaltime = 0;
+  double totalwpm;
+  double highscore = 0;
   // getopt stuff
   // opterr = 0;
   int c;
@@ -76,28 +78,30 @@ int main(int argc, char **argv){
     getline(file, s); // file >> filename; // ss;
     if (file.eof()){ break;}
     /*
-    try{
-      getline(file, s);
-    } catch (ios_base::failure e) {
-      cout << "fail" << endl;
-      break;
-    }
-    */
+       try{
+       getline(file, s);
+       } catch (ios_base::failure e) {
+       cout << "fail" << endl;
+       break;
+       }
+     */
     sentences.push_back(s);
   }
   cout << "File successfully loaded." << endl;
-/*
   // TODO
   // READ HIGHSCORE FROM <filename.hs>
-  fstream hs_file;
-  hs_file.open("input.hs");
-  string highscore;
+  ifstream hs_file;
+  // hs_file.open("user.hs");
+  string hsfile = filename + ".hs";
+  hs_file.open(hsfile.c_str());
+  string highscorestring;
 
   // (at end) write highscore to <filename.hs>
 
-  hs_file >> highscore;
-  cout << highscore;
-*/
+  hs_file >> highscorestring;
+  hs_file.close();
+  highscore = atoi(highscorestring.c_str());
+  cout << "The current highscore is: " << highscore << endl;
 
   vector<int> sentence_order;
   for (unsigned int i = 0; i < sentences.size(); i++){
@@ -177,11 +181,18 @@ int main(int argc, char **argv){
       totalwords += sentences[line].size();
       totaltime += dt;
     }
+    totalwpm = calc_wpm(totaltime, totalwords);
     cout << "Your wpm was: " << wpm << endl;
     cout << "You took " << dt << " seconds to complete this line." << endl;
-    // si increments even if <esc> is pressed. So you are penalized for skipping a line
-    cout << "Your average wpm is: " << (calc_wpm(totaltime, totalwords)) << endl;
+    cout << "Your average wpm is: " << totalwpm << endl;
     // end_loop:
     // cout << "\x1b[0m" << endl;
+  }
+  if(totalwpm > highscore){
+    cout << "New highscore: " << totalwpm << "!" << endl;
+    ofstream hs_file (hsfile.c_str(), ios::trunc);
+    hs_file << totalwpm;
+    hs_file.close();
+    cout << "Highscore written to " << hsfile << endl;
   }
 }
