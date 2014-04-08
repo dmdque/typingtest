@@ -18,5 +18,6 @@ You will then be prompted for an input file. Enter a text file (eg. `input.txt`)
 -d  
 &nbsp;&nbsp;&nbsp; Turn on debugging.
 
--l \<limit\> 
+-l \<limit\>  
 &nbsp;&nbsp;&nbsp; Limit the number of lines read in to \<limit\>.
+
