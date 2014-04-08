@@ -6,7 +6,7 @@ Run `make` to compile. If it doesn't work, run:
 Once compiled, run:
 > ./tt.out
 
-You will then be prompted for an input file. Enter a text file (eg. `input.txt`) to begin. Highscores are saved in `\<input\>.hs`.
+You will then be prompted for an input file. Enter a text file (eg. `input.txt`) to begin. Highscores are saved in `<input>.hs`.
 
 ### Options
 -f \<file\>  
