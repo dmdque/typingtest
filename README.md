@@ -6,7 +6,7 @@ Run `make` to compile. If it doesn't work, run:
 Once compiled, run:
 > ./tt.out
 
-You will then be prompted for an input file. Enter a text file (eg. `input.txt`) to begin.
+You will then be prompted for an input file. Enter a text file (eg. `input.txt`) to begin. Highscores are saved in `\<input\>.hs`.
 
 ### Options
 -f \<file\>  
@@ -18,5 +18,5 @@ You will then be prompted for an input file. Enter a text file (eg. `input.txt`)
 -d  
 &nbsp;&nbsp;&nbsp; Turn on debugging.
 
--l \<limit\>
+-l \<limit\> 
 &nbsp;&nbsp;&nbsp; Limit the number of lines read in to \<limit\>.

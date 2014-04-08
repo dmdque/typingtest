@@ -2,12 +2,7 @@ To Do
 ====
 ## Probably Do
 * make time more precise
-* add highscore system
-  * track scores over time (for each sentence? hmm nah) and make a graph
-  * save overall highscore to file
-  * print success message when new highscore
-* option to choose number of lines to be tested on
-  * (so it's not 60+ every time)
+* track scores over time (for each sentence? hmm nah) and make a graph
 * handle case where invalid filename is given
 
 ## Maybe Do
@@ -30,3 +25,8 @@ To Do
 * ~~add colour to text~~
 * ~~add 'skip' shortcut~~
 * ~~add timer~~
+* ~~add highscore system~~
+  * ~~save overall highscore to file~~
+  * ~~print success message when new highscore~~
+* ~~option to choose number of lines to be tested on~~
+
