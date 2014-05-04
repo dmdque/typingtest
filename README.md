@@ -1,6 +1,6 @@
 typingtest
 ==========
-Run `make` to compile. If it doesn't work, run:
+Run `make` to compile. You may need to install xorg-dev (`sudo apt-get install xorg-dev`). If it doesn't work, run:
 > g++ main.cc
 
 Once compiled, run:
