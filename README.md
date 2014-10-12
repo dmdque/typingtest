@@ -1,7 +1,12 @@
 typingtest
 ==========
+![Screenshot 1](img/screenshot-1.png)
+
+You can watch a video demo [here](https://www.youtube.com/watch?v=8xy7ie34lR8).
+
+### Compiling and Running
 Run `make` to compile. You may need to install xorg-dev (`sudo apt-get install xorg-dev`). If it doesn't work, run:
-> g++ main.cc
+> g++ main.cc -o tt.out
 
 Once compiled, run:
 > ./tt.out
