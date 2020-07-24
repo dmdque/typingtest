@@ -3,12 +3,13 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
-#include <ctime>
+#include <chrono>
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
 #include <termios.h>
 using namespace std;
+using namespace chrono;
 
 char getch() {
   char buf = 0;
@@ -127,7 +128,7 @@ int main(int argc, char **argv){
     cout << "\n";
   }
   // actual meat
-  time_t t1, t2;
+  steady_clock::time_point t1, t2;
   for (unsigned int si = 0; si < sentences.size(); si++){ // si = sentence iterator
     int line = sentence_order[si];
     if (sentences[line].size() == 0){ // empty line!
@@ -143,7 +144,7 @@ int main(int argc, char **argv){
     while (i < sentences[line].size()){
       ch = getch();
       if (i == 0){
-        time(&t1); // first character // alt: t1 = time(NULL);
+        t1 = steady_clock::now(); // when the first character is typed
       }
       if (ch == sentences[line][i]){ // correct character has been typed
         cout << "\x1b[0;32m" << ch << "\x1b[0m";
@@ -173,17 +174,17 @@ int main(int argc, char **argv){
       }
       // cout << ss.str();
     }
-    time(&t2);
+    t2 = steady_clock::now();
     cout << endl;
-    double dt = difftime(t2, t1);
-    double wpm = calc_wpm(dt, sentences[line].size());
+    double d = duration_cast<duration<double> >(t2 - t1).count();
+    double wpm = calc_wpm(d, sentences[line].size());
     if (wpm < 250){ // reasonable wpm // TODO: change this to only happen if sentence completed successfully. (not pressing esc)
       totalwords += sentences[line].size();
-      totaltime += dt;
+      totaltime += d;
     }
     totalwpm = calc_wpm(totaltime, totalwords);
     cout << "Your wpm was: " << wpm << endl;
-    cout << "You took " << dt << " seconds to complete this line." << endl;
+    cout << "You took " << d << " seconds to complete this line." << endl;
     cout << "Your average wpm is: " << totalwpm << endl;
     // end_loop:
     // cout << "\x1b[0m" << endl;
